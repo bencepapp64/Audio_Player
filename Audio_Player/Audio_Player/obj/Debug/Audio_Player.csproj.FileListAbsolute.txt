@@ -1,0 +1,15 @@
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player.csprojAssemblyReference.cache
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\MainWindow.g.cs
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\App.g.cs
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player_MarkupCompile.cache
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player_MarkupCompile.lref
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\bin\Debug\Audio_Player.exe.config
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\bin\Debug\Audio_Player.exe
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\bin\Debug\Audio_Player.pdb
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\MainWindow.baml
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player.g.resources
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player.Properties.Resources.resources
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player.csproj.GenerateResource.cache
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player.csproj.CoreCompileInputs.cache
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player.exe
+C:\Users\bence\Documents\Projects\Komp_Prog\Audio_Player\Audio_Player\obj\Debug\Audio_Player.pdb

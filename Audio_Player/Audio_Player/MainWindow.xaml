@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Audio_Player"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="500">
     <Grid>
-        
+        <ListBox x:Name="List_Box" HorizontalAlignment="Left" Height="222" Margin="100,60,0,0" VerticalAlignment="Top" Width="300"/>
+        <Slider HorizontalAlignment="Left" Margin="100,300,0,0" VerticalAlignment="Top" Width="300"/>
+        <Button Content="&lt;&lt;" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="50"/>
+        <Button Content="&gt;&gt;" HorizontalAlignment="Left" Margin="350,350,0,0" VerticalAlignment="Top" Width="50"/>
+        <Button x:Name="Play" Content="Play / Pause" HorizontalAlignment="Left" Margin="200,350,0,0" VerticalAlignment="Top" Width="100" Click="Play_Click"/>
+        <Slider HorizontalAlignment="Left" Margin="262,23,0,0" VerticalAlignment="Top" Height="18" RenderTransformOrigin="0.5,0.5" Width="150">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
+        <Button Content="Open" HorizontalAlignment="Left" Margin="325,262,0,0" VerticalAlignment="Top" Width="75" Click="Open_Click"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="110,22,0,0" VerticalAlignment="Top" Width="75" Click="Save_Click"/>
+        <Image Margin="423,22,44,427" Source="Image3.png" Stretch="Fill"/>
+        <Image Margin="224,22,247,427" Source="Image4.png" Stretch="Fill" RenderTransformOrigin="0.84,0.5"/>
+        <Button Content="Open " HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Width="75" Click="Open2_Click"/>
+
     </Grid>
 </Window>
