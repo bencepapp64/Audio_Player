@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Audio_Player"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="500">
+        Title="Audio_Player by: Bence" Height="500" Width="500" ResizeMode="CanMinimize">
     <Grid>
-        <ListBox x:Name="List_Box" HorizontalAlignment="Left" Height="222" Margin="100,60,0,0" VerticalAlignment="Top" Width="300"/>
+        <ListBox x:Name="List_Box" HorizontalAlignment="Left" Height="222" Margin="100,60,0,0" VerticalAlignment="Top" Width="300" SelectionChanged="List_Box_SelectionChanged"/>
         <Slider x:Name="M_Slider" HorizontalAlignment="Left" Margin="100,318,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.523,3.278" ValueChanged="M_Slider_ValueChanged" LostMouseCapture="M_Slider_LostMouseCapture"/>
         <Button x:Name="previous" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="50" Click="Previous"/>
         <Button x:Name="next" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="350,350,0,0" VerticalAlignment="Top" Width="50" Click="Next"/>

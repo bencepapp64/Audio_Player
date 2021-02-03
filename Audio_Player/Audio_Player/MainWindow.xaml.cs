@@ -42,9 +42,24 @@ namespace Audio_Player
             {
                 M_Slider.Value = mp.Position.TotalSeconds;
             }
+
+            Now.Content = List_Box.SelectedItem;
+
             if (M_Slider.Value == M_Slider.Maximum)
             {
+                try
+                {
+                    mp.Open(new Uri(musics[List_Box.SelectedIndex + 1]));
+                    List_Box.SelectedIndex += 1;
+                    ButtonChanged();
+                }
+                catch (ArgumentOutOfRangeException)
+                {
 
+                    mp.Open(new Uri(musics[0]));
+                    List_Box.SelectedIndex = 0;
+                    ButtonChanged();
+                }
             }
         }
         private void Open_Click(object sender, RoutedEventArgs e)
@@ -87,6 +102,9 @@ namespace Audio_Player
             sw.Close();
             List_Box.Items.Clear();
             musics.Clear();
+            next.IsEnabled = true;
+            Play.IsEnabled = true;
+            previous.IsEnabled = true;
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
@@ -96,25 +114,40 @@ namespace Audio_Player
 
         private void Open2_Click(object sender, RoutedEventArgs e)
         {
-            StreamReader sr = new StreamReader("save.txt");
-            while (!sr.EndOfStream) 
+            try
             {
-                string row = sr.ReadLine();
-                List_Box.Items.Add(row);
-                musics.Add(row);
+                StreamReader sr = new StreamReader("save.txt");
+                while (!sr.EndOfStream)
+                {
+                    string row = sr.ReadLine();
+                    List_Box.Items.Add(row);
+                    musics.Add(row);
+                }
+
+                sr.Close();
+                mp.Open(new Uri(musics[0]));
+                if (musics.Count != 0)
+                {
+                    next.IsEnabled = true;
+                    Play.IsEnabled = true;
+                    previous.IsEnabled = true;
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please open a save.");
             }
 
-            sr.Close();
+           
         }
 
-        /*private void List_Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void List_Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            mp.Pause();
             mp.Open(new Uri(musics[List_Box.SelectedIndex]));
-            next.IsEnabled = true;
-            Play.IsEnabled = true;
-            previous.IsEnabled = true;
+        
             ButtonChanged();
-        }*/
+        }
 
         private void Next(object sender, RoutedEventArgs e)
         {
@@ -122,12 +155,14 @@ namespace Audio_Player
             {
                 mp.Open(new Uri(musics[List_Box.SelectedIndex + 1]));
                 List_Box.SelectedIndex += 1;
+                ButtonChanged();
             }
             catch (ArgumentOutOfRangeException)
             {
 
                 mp.Open(new Uri(musics[0]));
                 List_Box.SelectedIndex = 0;
+                ButtonChanged();
             }
             
         }
@@ -137,12 +172,14 @@ namespace Audio_Player
             {
                 mp.Open(new Uri(musics[List_Box.SelectedIndex - 1]));
                 List_Box.SelectedIndex -= 1;
+                ButtonChanged();
             }
             catch (ArgumentOutOfRangeException)
             {
 
                 mp.Open(new Uri(musics[musics.Count-1]));
                 List_Box.SelectedIndex = musics.Count -1;
+                ButtonChanged();
             }
         }
         public void ButtonChanged()
