@@ -69,7 +69,12 @@ namespace Audio_Player
             {
                 MessageBox.Show("Please open a file.");
             }
-            
+            if (musics.Count != 0)
+            {
+                next.IsEnabled = true;
+                Play.IsEnabled = true;
+                previous.IsEnabled = true;
+            }
         }
         
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -102,14 +107,14 @@ namespace Audio_Player
             sr.Close();
         }
 
-        private void List_Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        /*private void List_Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             mp.Open(new Uri(musics[List_Box.SelectedIndex]));
             next.IsEnabled = true;
             Play.IsEnabled = true;
             previous.IsEnabled = true;
             ButtonChanged();
-        }
+        }*/
 
         private void Next(object sender, RoutedEventArgs e)
         {
