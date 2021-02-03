@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.IO;
+using System.Windows.Threading;
 
 namespace Audio_Player
 {
@@ -28,8 +29,23 @@ namespace Audio_Player
         public MainWindow()
         {
             InitializeComponent();
-        }
 
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            timer.Start();
+        }
+        void timer_Tick(object sender, EventArgs e)
+        {
+            if ((mp.Source != null) && (mp.NaturalDuration.HasTimeSpan))
+            {
+                M_Slider.Value = mp.Position.TotalSeconds;
+            }
+            if (M_Slider.Value == M_Slider.Maximum)
+            {
+
+            }
+        }
         private void Open_Click(object sender, RoutedEventArgs e)
         {   
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -54,7 +70,7 @@ namespace Audio_Player
             }
             
         }
-
+        
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             
@@ -73,12 +89,28 @@ namespace Audio_Player
                 mp.Play();
                 Play.Content = "Pause";
                 k = false;
+                M_Slider.Maximum = mp.NaturalDuration.TimeSpan.TotalSeconds;
             }
         }
 
         private void Open2_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void List_Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            mp.Open(new Uri(musics[List_Box.SelectedIndex]));
+            if (k == false)
+            {
+                k = true;
+                Play.Content = "Play";
+            }
+            else
+            {
+                k = false;
+                Play.Content = "Pause";
+            }
         }
     }
 }
