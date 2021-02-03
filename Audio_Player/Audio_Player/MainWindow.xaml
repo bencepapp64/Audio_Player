@@ -8,11 +8,11 @@
         Title="MainWindow" Height="500" Width="500">
     <Grid>
         <ListBox x:Name="List_Box" HorizontalAlignment="Left" Height="222" Margin="100,60,0,0" VerticalAlignment="Top" Width="300" SelectionChanged="List_Box_SelectionChanged"/>
-        <Slider x:Name="M_Slider" HorizontalAlignment="Left" Margin="100,318,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.523,3.278"/>
-        <Button Content="&lt;&lt;" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="50"/>
-        <Button Content="&gt;&gt;" HorizontalAlignment="Left" Margin="350,350,0,0" VerticalAlignment="Top" Width="50"/>
+        <Slider x:Name="M_Slider" HorizontalAlignment="Left" Margin="100,318,0,0" VerticalAlignment="Top" Width="300" RenderTransformOrigin="0.523,3.278" ValueChanged="M_Slider_ValueChanged" LostMouseCapture="M_Slider_LostMouseCapture"/>
+        <Button x:Name="previous" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="100,350,0,0" VerticalAlignment="Top" Width="50" Click="Previous"/>
+        <Button x:Name="next" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="350,350,0,0" VerticalAlignment="Top" Width="50" Click="Next"/>
         <Button x:Name="Play" Content="Play / Pause" HorizontalAlignment="Left" Margin="200,350,0,0" VerticalAlignment="Top" Width="100" Click="Play_Click"/>
-        <Slider HorizontalAlignment="Left" Margin="262,23,0,0" VerticalAlignment="Top" Height="18" RenderTransformOrigin="0.5,0.5" Width="150">
+        <Slider x:Name="V_Slider" HorizontalAlignment="Left" Margin="262,23,0,0" VerticalAlignment="Top" Height="18" RenderTransformOrigin="0.5,0.5" Width="150" ValueChanged="V_Slider_ValueChanged" Maximum="1" LargeChange="0.1" SmallChange="1">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1"/>

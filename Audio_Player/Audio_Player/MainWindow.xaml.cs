@@ -18,9 +18,6 @@ using System.Windows.Threading;
 
 namespace Audio_Player
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         List<string> musics = new List<string>();
@@ -34,6 +31,10 @@ namespace Audio_Player
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             timer.Start();
+
+            next.IsEnabled = false;
+            Play.IsEnabled = false;
+            previous.IsEnabled = false;
         }
         void timer_Tick(object sender, EventArgs e)
         {
@@ -62,10 +63,10 @@ namespace Audio_Player
             try
             {
                 mp.Open(new Uri(musics[0]));
+                
             }
             catch (ArgumentOutOfRangeException)
             {
-
                 MessageBox.Show("Please open a file.");
             }
             
@@ -73,44 +74,102 @@ namespace Audio_Player
         
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            
+            StreamWriter sw = new StreamWriter("save.txt");
+            foreach (var item in musics)
+            {
+                sw.WriteLine(item);
+            }
+            sw.Close();
+            List_Box.Items.Clear();
+            musics.Clear();
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (k == false)
-            {
-                mp.Pause();
-                Play.Content = "Play";
-                k = true;
-            }
-            else {
-                mp.Play();
-                Play.Content = "Pause";
-                k = false;
-                M_Slider.Maximum = mp.NaturalDuration.TimeSpan.TotalSeconds;
-            }
+            ButtonChanged();
         }
 
         private void Open2_Click(object sender, RoutedEventArgs e)
         {
+            StreamReader sr = new StreamReader("save.txt");
+            while (!sr.EndOfStream) 
+            {
+                string row = sr.ReadLine();
+                List_Box.Items.Add(row);
+                musics.Add(row);
+            }
 
+            sr.Close();
         }
 
         private void List_Box_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             mp.Open(new Uri(musics[List_Box.SelectedIndex]));
+            next.IsEnabled = true;
+            Play.IsEnabled = true;
+            previous.IsEnabled = true;
+            ButtonChanged();
+        }
+
+        private void Next(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                mp.Open(new Uri(musics[List_Box.SelectedIndex + 1]));
+                List_Box.SelectedIndex += 1;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+
+                mp.Open(new Uri(musics[0]));
+                List_Box.SelectedIndex = 0;
+            }
+            
+        }
+        private void Previous(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                mp.Open(new Uri(musics[List_Box.SelectedIndex - 1]));
+                List_Box.SelectedIndex -= 1;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+
+                mp.Open(new Uri(musics[musics.Count-1]));
+                List_Box.SelectedIndex = musics.Count -1;
+            }
+        }
+        public void ButtonChanged()
+        {
             if (k == false)
             {
                 k = true;
                 Play.Content = "Play";
+                mp.Pause();
             }
             else
             {
                 k = false;
                 Play.Content = "Pause";
+               
+                mp.Play();
             }
+        }
+
+        private void M_Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            M_Slider.Maximum = mp.NaturalDuration.TimeSpan.TotalSeconds;
+        }
+
+        private void M_Slider_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+            mp.Position = new TimeSpan(0, 0, Convert.ToInt32(M_Slider.Value));
+        }
+
+        private void V_Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            mp.Volume = (double)V_Slider.Value;
         }
     }
 }
